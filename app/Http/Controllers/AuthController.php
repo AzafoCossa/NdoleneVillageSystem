@@ -33,13 +33,16 @@ class AuthController extends Controller
         $validated = $request->validate([
             'username' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required|same:password'
         ], [
-            'username.required' => 'O campo nome de usuário é obrigatório',
+            'username.required' => 'O campo username é obrigatório',
             'email.required' => 'O campo email é obrigatório',
             'email.email' => 'O email informado é inválido',
-            'password.required' => 'O campo senha é obrigatório',
-            'password.confirmed' => 'As senhas não coincidem'
+            'password.required' => 'O campo password é obrigatório',
+            'password.confirmed' => 'As senhas não coincidem',
+            'password_confirmation.required' => 'O campo confirmar password é obrigatório',
+            'password_confirmation.same' => 'As senhas não coincidem'
         ]);
 
         $user = User::create([

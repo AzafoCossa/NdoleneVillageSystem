@@ -27,30 +27,60 @@
                         <div class="">
                             <form action="/register" method="POST">
                                 @csrf
-                                <input
-                                    type="text"
-                                    placeholder="Username"
-                                    name="username"
-                                    class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900"
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Email"
-                                    name="email"
-                                    class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900"
-                                />
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    name="password"
-                                    class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900"
-                                />
-                                <input
-                                    type="password"
-                                    placeholder="Confirmar password"
-                                    name="password_confirmation"
-                                    class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900"
-                                />
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder="Username"
+                                        name="username"
+                                        value="{{ old('username') }}"
+                                        class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900 @error('username') border-2 border-red-400 @enderror"
+                                    />
+                                    @error('username')
+                                    <span class="block text-red-400">{{
+                                        $message
+                                    }}</span>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder="Email"
+                                        name="email"
+                                        value="{{ old('email') }}"
+                                        class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900 @error('email') border-2 border-red-400 @enderror"
+                                    />
+                                    @error('email')
+                                    <span class="block text-red-400">{{
+                                        $message
+                                    }}</span>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        name="password"
+                                        class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900 @error('password') border-2 border-red-400 @enderror"
+                                    />
+                                    @error('password')
+                                    <span class="block text-red-400">{{
+                                        $message
+                                    }}</span>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <input
+                                        type="password"
+                                        placeholder="Confirmar password"
+                                        name="password_confirmation"
+                                        class="mt-8 w-full rounded-lg bg-white-100 px-4 py-3 placeholder-gray-500 text-grey-900 @error('password_confirmation') border-2 border-red-400 @enderror"
+                                    />
+                                    @error('password_confirmation')
+                                    <span class="block text-red-400">{{
+                                        $message
+                                    }}</span>
+                                    @enderror
+                                </div>
 
                                 <div
                                     class="mt-5 flex items-center justify-between text-lg"
