@@ -27,6 +27,32 @@ class AuthController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    public function register(Request $request){
+        
+        $validated = $request->validate([
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed'
+        ], [
+            'username.required' => 'O campo nome de usuário é obrigatório',
+            'email.required' => 'O campo email é obrigatório',
+            'email.email' => 'O email informado é inválido',
+            'password.required' => 'O campo senha é obrigatório',
+            'password.confirmed' => 'As senhas não coincidem'
+        ]);
+
+        $user = User::create([
+            'username' => $validated['username'],
+            'email' => strtolower($validated['email']),
+            'password' => bcrypt($validated['password'])
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('dashboard');
+    }
+
     public function logout(Request $request){
         Auth::logout();
 
