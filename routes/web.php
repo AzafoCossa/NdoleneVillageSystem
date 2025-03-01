@@ -16,16 +16,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('home');
+
+Route::get('/home', function(){
+    return redirect()->route('home');
 });
 
-Route::get('/login', function(){
+Route::middleware(['guest'])->get('/login', function(){
     return view('auth.login');
-});
+})->name('login');
+
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/register', function(){
     return view('auth.register');
 });
 
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
+Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
