@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function(){
+    return view('auth.login');
+});
+
+Route::get('/register', function(){
+    return view('auth.register');
+});
+
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 });
