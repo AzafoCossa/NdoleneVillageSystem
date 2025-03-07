@@ -54,7 +54,7 @@
             </li>
 
             <li class="bg-red-400 w-full py-2 pl-5 text-white-50">
-                <form action="logout" method="post">
+                <form action="/logout" method="post">
                     @csrf
                     <button
                         type="submit"
