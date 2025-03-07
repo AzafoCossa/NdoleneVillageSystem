@@ -1,6 +1,10 @@
 <section class="sidebar w-[250px] overflow-y-auto bg-secondary">
     <div class="flex items-center justify-center py-6">
-        <img class="h-6 w-auto" src="./assets/img/logo_white.png" alt="Logo" />
+        <img
+            class="h-6 w-auto"
+            src="{{ asset('assets/img/logo_white.png') }}"
+            alt="Logo"
+        />
     </div>
     <div class="w-full">
         <ul class="text-lg">
