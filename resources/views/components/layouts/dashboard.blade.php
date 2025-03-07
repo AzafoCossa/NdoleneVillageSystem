@@ -47,7 +47,7 @@
                                 </p>
                                 <span
                                     class="text-secondary"
-                                    >{{Auth::user()->type}}</span
+                                    >{{Auth::user()->role}}</span
                                 >
                             </div>
                             @endif
