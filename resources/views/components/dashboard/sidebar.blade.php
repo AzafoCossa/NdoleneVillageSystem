@@ -1,10 +1,12 @@
 <section class="sidebar w-[250px] overflow-y-auto bg-secondary">
     <div class="flex items-center justify-center py-6">
-        <img
-            class="h-6 w-auto"
-            src="{{ asset('assets/img/logo_white.png') }}"
-            alt="Logo"
-        />
+        <a href="{{ route('home') }}">
+            <img
+                class="h-6 w-auto"
+                src="{{ asset('assets/img/logo_white.png') }}"
+                alt="Logo"
+            />
+        </a>
     </div>
     <div class="w-full">
         <ul class="text-lg">
@@ -28,7 +30,7 @@
                 >
             </li>
 
-            <li class="bg-grey-200 w-full py-2 pl-5 text-grey-900">
+            <li class="w-full py-2 pl-5 text-grey-900">
                 <a class="flex items-center gap-2" href="{{ route('guests') }}"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +52,24 @@
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
                     Guests</a
+                >
+            </li>
+
+            <li class="w-full py-2 pl-5 text-grey-900">
+                <a class="flex items-center gap-2" href="{{ route('rooms') }}">
+                    <svg
+                        width="30"
+                        height="21"
+                        viewBox="0 0 30 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M1.5 0C2.32969 0 3 0.670312 3 1.5V13.5H13.5V6C13.5 5.17031 14.1703 4.5 15 4.5H25.5C27.9844 4.5 30 6.51562 30 9V19.5C30 20.3297 29.3297 21 28.5 21C27.6703 21 27 20.3297 27 19.5V18H16.5H15H3V19.5C3 20.3297 2.32969 21 1.5 21C0.670312 21 0 20.3297 0 19.5V1.5C0 0.670312 0.670312 0 1.5 0ZM8.25 4.5C9.24456 4.5 10.1984 4.89509 10.9017 5.59835C11.6049 6.30161 12 7.25544 12 8.25C12 9.24456 11.6049 10.1984 10.9017 10.9017C10.1984 11.6049 9.24456 12 8.25 12C7.25544 12 6.30161 11.6049 5.59835 10.9017C4.89509 10.1984 4.5 9.24456 4.5 8.25C4.5 7.25544 4.89509 6.30161 5.59835 5.59835C6.30161 4.89509 7.25544 4.5 8.25 4.5Z"
+                            fill="black"
+                        />
+                    </svg>
+                    Bedrooms</a
                 >
             </li>
 
