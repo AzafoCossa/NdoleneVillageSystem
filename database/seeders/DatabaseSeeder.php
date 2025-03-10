@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\Country;
 use App\Models\Guest;
+use App\Models\Room;
+use App\Models\RoomType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,12 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
-
         $this->call([
             CountriesTableSeeder::class,
         ]);
 
         Guest::factory(100)->create();
+        RoomType::factory(5)->create();
+        Room::factory(15)->create();
     }
 }
