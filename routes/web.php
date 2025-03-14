@@ -36,8 +36,8 @@ Route::middleware(['guest'])->get('/register', function(){
 })->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
-Route::middleware(['auth'])->prefix('dashboard')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::middleware(['admin'])->group(function(){
         Route::get('/guests', [GuestController::class, 'index'])->name('guests');
         Route::group(['prefix' => 'rooms'], function(){

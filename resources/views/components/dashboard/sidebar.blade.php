@@ -13,7 +13,7 @@
             <li class="bg-white-50 w-full py-2 pl-5 text-grey-900">
                 <a
                     class="flex items-center gap-2"
-                    href="{{ route('dashboard') }}"
+                    href="{{ route('dashboard.index') }}"
                     ><svg
                         width="31"
                         height="29"
@@ -31,7 +31,9 @@
             </li>
 
             <li class="w-full py-2 pl-5 text-grey-900">
-                <a class="flex items-center gap-2" href="{{ route('guests') }}"
+                <a
+                    class="flex items-center gap-2"
+                    href="{{ route('dashboard.guests') }}"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -56,7 +58,10 @@
             </li>
 
             <li class="w-full py-2 pl-5 text-grey-900">
-                <a class="flex items-center gap-2" href="{{ route('rooms') }}">
+                <a
+                    class="flex items-center gap-2"
+                    href="{{ route('dashboard.rooms') }}"
+                >
                     <svg
                         width="30"
                         height="21"
