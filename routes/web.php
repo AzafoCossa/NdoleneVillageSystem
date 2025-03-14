@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
+use App\Livewire\Checkout;
 use App\Livewire\Rooms\Index as RoomsIndex;
+use App\Livewire\Rooms\Availability as RoomsAvailability;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/book/{room:slug}', Checkout::class)->name('book.room')->middleware('auth');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::post('/checkout/{order}', [CheckoutController::class, 'show'])->name('checkout.show');
+Route::get('/post-checkout', [CheckoutController::class, 'edit'])->name('checkout.edit');
+Route::get('/bookings', function(){
+    return 'Thank you for booking with us';
+})->name('bookings.new');
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +50,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 
 Route::prefix('/rooms')->name('rooms.')->group(function(){
     Route::get('/', RoomsIndex::class)->name('index');
+    Route::get('/{room:slug}', RoomsAvailability::class)->name('availability');
 });
 Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
