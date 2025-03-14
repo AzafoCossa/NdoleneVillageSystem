@@ -25,7 +25,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->intended(route('dashboard.index'));
     }
 
     public function register(Request $request){
@@ -53,7 +53,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->intended(route('dashboard.index'));
     }
 
     public function logout(Request $request){
