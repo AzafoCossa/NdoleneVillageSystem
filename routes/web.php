@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
+use App\Livewire\Rooms\Index as RoomsIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,9 @@ Route::middleware(['guest'])->get('/register', function(){
 })->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
+Route::prefix('/rooms')->name('rooms.')->group(function(){
+    Route::get('/', RoomsIndex::class)->name('index');
+});
 Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::middleware(['admin'])->group(function(){

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->foreignIdFor(RoomType::class, 'room_type_id')->references('id')->on('room_types');
-            $table->enum('status', ['available', 'booked', 'maintenance'])->default('available');
+            $table->enum('status', ['available', 'maintenance'])->default('available');
             $table->integer('price');
             $table->integer('capacity');
             $table->foreignIdFor(User::class, 'created_by')->references('id')->on('users');

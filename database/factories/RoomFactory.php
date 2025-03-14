@@ -21,7 +21,7 @@ class RoomFactory extends Factory
             'slug' => $this->faker->slug,
             'description' => $this->faker->text,
             'room_type_id' => $this->faker->numberBetween(1, 5),
-            'status' => $this->faker->randomElement(['available', 'booked', 'maintenance']),
+            'status' => $this->faker->randomElement(['available', 'maintenance']),
             'price' => $this->faker->randomNumber(5),
             'capacity' => $this->faker->numberBetween(1, 5),
             'created_by' => \App\Models\User::factory(),
