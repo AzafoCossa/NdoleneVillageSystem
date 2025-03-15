@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
+use App\Livewire\Bookings\Thankyou;
 use App\Livewire\Checkout;
 use App\Livewire\Rooms\Index as RoomsIndex;
 use App\Livewire\Rooms\Availability as RoomsAvailability;
@@ -21,12 +22,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/book/{room:slug}', Checkout::class)->name('book.room')->middleware('auth');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store')->middleware('auth');
 Route::post('/checkout/{order}', [CheckoutController::class, 'show'])->name('checkout.show');
-Route::get('/post-checkout', [CheckoutController::class, 'edit'])->name('checkout.edit');
-Route::get('/bookings', function(){
-    return 'Thank you for booking with us';
-})->name('bookings.new');
+Route::get('/post-checkout', [CheckoutController::class, 'edit'])->name('checkout.edit')->middleware('auth');
+Route::get('/bookings/success', Thankyou::class)->name('bookings.success')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

@@ -186,7 +186,7 @@
                     }
                 );
 
-                window.location.href = "{{ route('bookings.new')}}";
+                window.location.href = "{{ route('bookings.thankyou')}}";
             }
         } catch (error) {
             console.error(error);
