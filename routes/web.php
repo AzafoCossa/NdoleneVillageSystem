@@ -51,7 +51,7 @@ Route::prefix('/rooms')->name('rooms.')->group(function(){
     Route::get('/', RoomsIndex::class)->name('index');
     Route::get('/{room:slug}', RoomsAvailability::class)->name('availability');
 });
-Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function () {
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::middleware(['admin'])->group(function(){
         Route::get('/guests', [GuestController::class, 'index'])->name('guests');
@@ -61,4 +61,4 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
             })->name('rooms');
         });
     });
-});
+})->middleware(['auth']);
