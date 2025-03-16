@@ -55,6 +55,7 @@
             </div>
         </div>
         <div class="items-center justify-between flex w-auto" id="navbar-language">
+          @guest
           <ul class="flex font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 flex-row md:mt-0">
             <li>
               <a href="{{ route('login') }}" class="block py-2 px-3 md:p-0 text-white-50 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700">Login</a>
@@ -63,6 +64,7 @@
               <a href="{{ route('register') }}" class="block py-2 px-3 md:p-0 text-white-50 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700">Registar</a>
             </li>
           </ul>
+          @endguest
         </div>
         </div>
       </nav>
