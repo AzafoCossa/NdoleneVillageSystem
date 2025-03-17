@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->string('email')->unique();
-            $table->enum('role', ['administrator', 'client', 'guest', 'manager', 'receptionist'])->default('client');
+            $table->enum('role', ['administrator', 'client', 'manager', 'receptionist'])->default('client');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
