@@ -3,6 +3,16 @@ import "flowbite";
 import Swal from "sweetalert2";
 window.Swal = Swal;
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+});
+
+window.Toast = Toast;
+
 const menuToggle = document.querySelector("#menu-toggler");
 const menuClose = document.querySelector("#menu-remover");
 const menuCTA = document.querySelector("#menu-cta");
