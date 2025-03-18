@@ -174,6 +174,10 @@
                 !transaction ||
                 transaction.status === "DECLINED"
             ) {
+                Toast.fire({
+                    icon: "error",
+                    text: "O pagamento foi recusado",
+                });
             } else {
                 const updateReservation = await fetch(
                     "{{ route('checkout.edit') }}",
