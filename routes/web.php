@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
 use App\Livewire\Bookings\Thankyou;
 use App\Livewire\Checkout;
+use App\Livewire\Dashboard\Reservations as DashboardReservations;
 use App\Livewire\Dashboard\Rooms;
 use App\Livewire\Dashboard\RoomTypes;
 use App\Livewire\Rooms\Index as RoomsIndex;
@@ -54,7 +54,7 @@ Route::prefix('/rooms')->name('rooms.')->group(function(){
     Route::get('/{room:slug}', RoomsAvailability::class)->name('availability');
 });
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::get('/', DashboardReservations::class)->name('index');
     Route::middleware(['admin'])->group(function(){
         Route::get('/guests', [GuestController::class, 'index'])->name('guests');
         Route::get('/room-types', RoomTypes::class)->name('roomtypes');
