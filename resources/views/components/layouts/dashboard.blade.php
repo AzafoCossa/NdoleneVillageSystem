@@ -1,5 +1,6 @@
 <x-layouts.app>
     <div class="flex h-screen w-screen">
+        <x-slot name="title">{{ $title ?? "Dashboard" }}</x-slot>
         <x-dashboard.sidebar></x-dashboard.sidebar>
         <main class="flex w-full flex-col">
             <div class="bg-white-50 flex w-full justify-between px-5 py-2">
