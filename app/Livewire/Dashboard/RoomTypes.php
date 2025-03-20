@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -18,7 +19,8 @@ class RoomTypes extends Component
 
     public $room_types = [];
 
-    #[Layout('components.layouts.dashboard')]
+    #[Layout('components.layouts.dashboard'),
+    Title('Room Types - Dashboard | Ndolene Village')]
     public function render()
     {
         $this->room_types = RoomType::withCount('rooms')->get();

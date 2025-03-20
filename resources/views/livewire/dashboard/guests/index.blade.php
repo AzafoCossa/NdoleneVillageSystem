@@ -1,4 +1,5 @@
 <div>
+    <
     <!-- Modal toggle -->
     <button
         data-modal-target="static-modal"
