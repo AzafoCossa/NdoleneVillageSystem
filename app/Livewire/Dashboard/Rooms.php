@@ -35,4 +35,9 @@ class Rooms extends Component
 
         $this->showRoomForm = false;
     }
+
+    public function cancelRoom(){
+        $this->roomForm->reset();
+        $this->showRoomForm = false;
+    }
 }
