@@ -16,7 +16,7 @@
         <script src="https://www.paypal.com/sdk/js?components=card-fields&client-id={{
                 env('PAYPAL_CLIENT_ID')
             }}"></script>
-
+        @if(! app()->isLocal())
         <!-- Google Tag Manager -->
         <script>
             (function (w, d, s, l, i) {
@@ -34,8 +34,10 @@
             })(window, document, "script", "dataLayer", "GTM-PBVK42LN");
         </script>
         <!-- End Google Tag Manager -->
+        @endif
     </head>
     <body>
+        @if(! app()->isLocal())
         <!-- Google Tag Manager (noscript) -->
         <noscript
             ><iframe
@@ -46,6 +48,7 @@
             ></iframe
         ></noscript>
         <!-- End Google Tag Manager (noscript) -->
+        @endif
         {{ $slot }}
     </body>
 </html>
