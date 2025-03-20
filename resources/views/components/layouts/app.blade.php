@@ -13,7 +13,10 @@
         }}
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>{{ $title ?? "Ndolene Village | Home" }}</title>
-
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-VWT4W2Q6N0"
+        ></script>
         <script src="https://www.paypal.com/sdk/js?components=card-fields&client-id={{
                 env('PAYPAL_CLIENT_ID')
             }}"></script>
