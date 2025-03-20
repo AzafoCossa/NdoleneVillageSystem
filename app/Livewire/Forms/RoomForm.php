@@ -19,7 +19,7 @@ class RoomForm extends Form
     public $price;
     public $capacity;
 
-    #[Validate('image|max:2048')]
+    #[Validate('image|max:5120')]
     public $image;
 
     protected $rules = [
