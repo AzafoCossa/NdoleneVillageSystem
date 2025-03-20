@@ -122,14 +122,20 @@
                     @error('roomForm.capacity')
                     <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
-                <div>
+                <div
+                    x-data="{ uploading: false, progress:0 }"
+                    x-on:livewire-upload-start="uploading = true"
+                    x-on:livewire-upload-finish="uploading = false"
+                    x-on:livewire-upload-cancel="uploading = false"
+                    x-on:livewire-upload-error="uploading = false"
+                    x-on:livewire-upload-progress="progress = $event.detail.progress"
+                >
                     <label
                         for="image"
                         class="block mb-2 text-sm font-medium text-gray-900"
                         >Imagem do quarto</label
                     >
                     <input
-                        wire:ignore
                         type="file"
                         wire:model="roomForm.image"
                         id="image"
@@ -137,6 +143,9 @@
                         placeholder="Quantas pessoas o quarto alberga?"
                         accept="image/png, image/jpeg"
                     />
+                    <div x-show="uploading">
+                        <progress max="100" x-bind:value="progress"></progress>
+                    </div>
                     @error('roomForm.image')
                     <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
