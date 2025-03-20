@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Ndolene Village | Página inicial</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body>
+<x-layouts.app>
+  <x-slot:metaseo>
+    <meta
+    name="description"
+    content="Descubra a Ndolene Village, a estância turística ideal para quem procura conforto, natureza e experiências inesquecíveis. Reserve quartos e refeições de forma simples e prática!"
+/>
+  </x-slot>
     <header class="relative bg-headerbackground bg-cover bg-center bg-no-repeat ">
       <nav class="bg-primary border-gray-200 sticky top-0 left-0 right-0">
         <div class="container flex flex-wrap items-center justify-end gap-5 mx-auto px-4">
@@ -774,5 +771,4 @@
         <p>Ndolene Village &copy; 2025 - Todos direitos reservados</p>
       </div>
     </footer>
-    </body>
-</html>
+</x-layouts.app>

@@ -3,6 +3,14 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="keywords"
+            content="NdoleneVillage, Ndolene Village, Resort Chidenguele, Hotel Chidenguele, Passar a noite, Estância turística, Turismo em Moçambique, Reservas de quartos, Pedidos de refeições, Hospedagem, Viagem, Lazer, Natureza, Descanso, Conforto, Experiências únicas"
+        />
+
+        {{
+            $metaseo ?? ""
+        }}
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>{{ $title ?? "Ndolene Village | Home" }}</title>
 
