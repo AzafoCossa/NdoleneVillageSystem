@@ -2,11 +2,13 @@
     @foreach($rooms as $room) @if($loop->odd)
     <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="image">
+            @if($room->images->count() > 0)
             <img
-                class="h-full w-full object-cover"
-                src="./assets/img/classic_suite_bed.jpg"
+                class="h-full w-full object-contain"
+                src="{{ asset('storage/'. $room->images[0]->path) }}"
                 alt="Cama clássica"
             />
+            @endif
         </div>
         <div class="bg-grey-900 px-6 py-4 md:py-8 lg:px-20 lg:py-16">
             <div class="w-full text-center">
@@ -277,11 +279,13 @@
     @else
     <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="image block md:hidden">
+            @if($room->images->count() > 0)
             <img
-                class="h-full w-full object-cover"
-                src="./assets/img/honey_moon_suite.jpg"
+                class="h-full w-full object-contain"
+                src="{{ asset('storage/'. $room->images[0]->path) }}"
                 alt="Cama clássica"
             />
+            @endif
         </div>
         <div class="bg-grey-100 px-6 py-4 md:py-8 lg:px-20 lg:py-16">
             <div class="w-full text-center">
@@ -549,11 +553,13 @@
             </a>
         </div>
         <div class="image hidden md:inline-block">
+            @if($room->images->count() > 0)
             <img
-                class="h-full w-full object-cover"
-                src="./assets/img/honey_moon_suite.jpg"
+                class="h-full w-full object-contain"
+                src="{{ asset('storage/'. $room->images[0]->path) }}"
                 alt="Cama clássica"
             />
+            @endif
         </div>
     </div>
     @endif @endforeach
