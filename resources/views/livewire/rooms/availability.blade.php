@@ -1,4 +1,7 @@
 <div>
+    <x-slot:title>
+        {{$room->type->name}} - {{$room->name}} | Ndolene Village
+    </x-slot>
     <nav class="w-full bg-orange-900 px-2 py-4 md:px-0">
         <div
             class="container m-auto flex flex-row items-center justify-between"
