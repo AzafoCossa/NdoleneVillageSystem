@@ -198,6 +198,13 @@
     }
     async function createOrderCallback() {
         try {
+            Toast.fire({
+                icon: "info",
+                text: "A processar o pagamento...",
+            });
+
+            document.getElementById("card-field-submit-button").disabled = true;
+
             const response = await fetch("{{ route('checkout.store') }}", {
                 method: "POST",
                 headers: {
