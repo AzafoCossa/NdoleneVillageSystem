@@ -14,6 +14,7 @@ class Availability extends Component
     #[Url(as: 'room', keep: true)]
     public $search = '';
     public $canBook = false;
+    public $bookMessage = null;
     public $checkin = null;
     public $checkout = null;
 
@@ -40,9 +41,17 @@ class Availability extends Component
     public function checkAvailability(){
         $r = session()->get('room');
 
-        if($this->isRoomAvailable($r)){
+        if($r == null){
+            $this->isRoomAvailable();
+            $this->canBook = true;
+            $this->bookMessage = "Aqui estão os quartos disponíveis para as datas escolhidas. escolha um quarto para reservar.";
+        }elseif($this->isRoomAvailable($r)){
             $this->dispatch('availability-message', message: 'O quarto está disponível', type: 'success');
         }else{
+            if(count($this->rooms) > 0){
+                $this->canBook = true;
+                $this->bookMessage = 'O quarto selecionado não está disponível para as datas escolhidas. Mas não se preocupe! Aqui estão algumas opções disponíveis para si.';
+            }
             $this->dispatch('availability-message', message: 'O quarto não está disponível', type: 'error');
         }
     }

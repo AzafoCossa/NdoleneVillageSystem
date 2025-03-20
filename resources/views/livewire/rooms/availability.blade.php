@@ -162,7 +162,10 @@
                     <div
                         class="mb-4 rounded-lg px-4 py-3 text-grey-900 bg-green-400"
                     >
-                        O quarto está disponível. Pode proceguir com a reserva.
+                        {{
+                            $bookMessage ??
+                                "O quarto está disponível. Pode proceguir com a reserva."
+                        }}
                     </div>
                     @endif @foreach($rooms as $room)
                     <div
