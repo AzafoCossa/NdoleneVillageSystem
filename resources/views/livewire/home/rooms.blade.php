@@ -4,7 +4,7 @@
         <div class="image">
             @if($room->images->count() > 0)
             <img
-                class="h-full w-full object-contain"
+                class="h-full w-full object-cover"
                 src="{{ asset('storage/'. $room->images[0]->path) }}"
                 alt="Cama clássica"
             />
@@ -281,7 +281,7 @@
         <div class="image block md:hidden">
             @if($room->images->count() > 0)
             <img
-                class="h-full w-full object-contain"
+                class="h-full w-full object-cover"
                 src="{{ asset('storage/'. $room->images[0]->path) }}"
                 alt="Cama clássica"
             />
@@ -555,7 +555,7 @@
         <div class="image hidden md:inline-block">
             @if($room->images->count() > 0)
             <img
-                class="h-full w-full object-contain"
+                class="h-full w-full object-cover"
                 src="{{ asset('storage/'. $room->images[0]->path) }}"
                 alt="Cama clássica"
             />
