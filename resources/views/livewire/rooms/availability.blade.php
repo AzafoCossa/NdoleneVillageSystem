@@ -1,7 +1,4 @@
 <div>
-    <x-slot:title>
-        {{$room->type->name}} - {{$room->name}} | Ndolene Village
-    </x-slot>
     <nav class="w-full bg-orange-900 px-2 py-4 md:px-0">
         <div
             class="container m-auto flex flex-row items-center justify-between"
@@ -167,9 +164,10 @@
                     >
                         O quarto está disponível. Pode proceguir com a reserva.
                     </div>
-                    @endif
+                    @endif @foreach($rooms as $room)
                     <div
-                        class="flex w-full flex-col gap-5 rounded-lg bg-white-100 md:flex-row"
+                        :key="{{$room->id}}"
+                        class="flex w-full flex-col gap-5 rounded-lg bg-white-100 md:flex-row @if(!$loop->first) mt-4 @endif"
                     >
                         <div class="image w-full shrink-0 rounded-lg md:w-96">
                             @if($room->images->count() > 0)
@@ -194,7 +192,7 @@
                             </p>
                             <div>
                                 <button
-                                    wire:click="bookRoom"
+                                    wire:click="bookRoom({{ $room->id }})"
                                     type="button"
                                     class="rounded-lg bg-secondary px-10 py-3 text-lg font-medium capitalize text-white-100 hover:cursor-pointer"
                                 >
@@ -206,6 +204,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

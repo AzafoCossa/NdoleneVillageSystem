@@ -51,7 +51,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 
 Route::prefix('/rooms')->name('rooms.')->group(function(){
     Route::get('/', RoomsIndex::class)->name('index');
-    Route::get('/{room:slug}', RoomsAvailability::class)->name('availability');
+    Route::get('/availability', RoomsAvailability::class)->name('availability');
 });
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', DashboardReservations::class)->name('index');

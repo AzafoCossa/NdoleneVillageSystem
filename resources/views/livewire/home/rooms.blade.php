@@ -269,7 +269,7 @@
                 >Noite
             </p>
             <a
-                href="{{ route('rooms.availability', $room->slug) }}"
+                href="{{ route('rooms.availability', 'room='.$room->slug) }}"
                 class="mt-2 inline-block rounded-lg bg-primary px-4 py-3 text-sm font-medium uppercase text-white-100 md:px-10 md:text-base lg:mt-5 lg:px-20 lg:text-lg"
             >
                 Reservar
@@ -546,7 +546,7 @@
                 >Noite
             </p>
             <a
-                href="{{ route('rooms.availability', $room->slug) }}"
+                href="{{ route('rooms.availability', 'room='.$room->slug) }}"
                 class="mt-2 inline-block rounded-lg bg-primary px-4 py-3 text-sm font-medium uppercase text-white-100 md:px-10 lg:mt-5 lg:px-20 lg:text-lg"
             >
                 Reservar
