@@ -34,11 +34,3 @@ menuClose.addEventListener("click", () => {
     menuToggle.classList.remove("hidden");
     menuClose.classList.add("hidden");
 });
-
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-    dataLayer.push(arguments);
-}
-gtag("js", new Date());
-
-gtag("config", "G-VWT4W2Q6N0");
