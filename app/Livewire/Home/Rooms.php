@@ -11,7 +11,7 @@ class Rooms extends Component
 
     public function render()
     {
-        $this->rooms = Room::with('type')->get();
+        $this->rooms = Room::with('type', 'images')->get();
         
         return view('livewire.home.rooms');
     }
