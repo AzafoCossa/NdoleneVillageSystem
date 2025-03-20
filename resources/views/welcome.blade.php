@@ -104,7 +104,7 @@
                 <li>
                   <a
                     class="rounded-lg bg-primary px-2 py-3 text-lg font-medium capitalize md:px-6 lg:px-12"
-                    href="#"
+                    href="{{ route('rooms.availability')}}"
                     >Reservar Agora</a
                   >
                 </li>
@@ -226,16 +226,17 @@
           <div
             class="mt-10 flex w-2/3 flex-row items-center justify-center gap-3 md:gap-5 lg:gap-10"
           >
-            <button
+            <a href="{{ route('rooms.availability')}}"
               class="rounded-lg bg-primary px-12 py-2 text-sm font-medium capitalize md:text-base lg:py-3 lg:text-lg"
             >
-              Reservar quarto</button
-            ><a
+              Reservar quarto</a
+            >
+            <!-- <a
               href="checkavailability.html"
               class="rounded-lg border-2 border-slate-50 px-12 py-2 text-sm font-medium capitalize md:text-base lg:py-3 lg:text-lg"
             >
               Pedir refeição
-            </a>
+            </a> -->
           </div>
         </main>
         <div class="hidden lg:flex justify-center">
