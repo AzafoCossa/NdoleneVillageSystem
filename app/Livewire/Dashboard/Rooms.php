@@ -18,11 +18,11 @@ class Rooms extends Component
     public $rooms = [];
     public $room_types = [];
 
-    // #[Title('Dashboard | Rooms - Ndolene Village')]
+    #[Title('Dashboard | Rooms - Ndolene Village')]
     #[Layout('components.layouts.dashboard')]
     public function render()
     {
-        $this->rooms = Room::all();
+        $this->rooms = Room::with('type')->get();
         $this->room_types = RoomType::all();
         
         return view('livewire.dashboard.rooms');

@@ -11,7 +11,7 @@ class Index extends Component
 
     public function render()
     {
-        $this->guests = Guest::all();
+        $this->guests = Guest::with('country')->get();
         
         return view('livewire.dashboard.guests.index');
     }

@@ -19,9 +19,9 @@ class Reservations extends Component
         $user = Auth::user();
 
         if($user->role === "client"){
-            $this->reservations = Reservation::where('user_id', $user->id)->get();
+            $this->reservations = Reservation::with('guest', 'room')->where('user_id', $user->id)->get();
         }else{
-            $this->reservations = Reservation::all();
+            $this->reservations = Reservation::with('guest', 'room')->get();
         }
         
         return view('livewire.dashboard.reservations');
