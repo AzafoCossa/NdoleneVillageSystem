@@ -9,7 +9,8 @@
         />
 
         {{
-            $metaseo ?? ""
+            $metaseo ??
+                "Descubra a Ndolene Village, a estância turística ideal para quem procura conforto, natureza e experiências inesquecíveis. Reserve quartos e refeições de forma simples e prática!"
         }}
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>{{ $title ?? "Ndolene Village | Home" }}</title>
