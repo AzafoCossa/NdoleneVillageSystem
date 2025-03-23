@@ -99,7 +99,7 @@
 
                             <div>
                                 <span class="text-lg font-bold text-grey-500"
-                                    >Preço total</span
+                                    >Valor total</span
                                 >
                                 <h1 class="text-2xl font-bold text-orange-900">
                                     {{ $totalPrice }} MZN
