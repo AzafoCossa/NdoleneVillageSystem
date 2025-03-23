@@ -164,7 +164,7 @@
                     >
                         {{
                             $bookMessage ??
-                                "O quarto está disponível. Pode proceguir com a reserva."
+                                "O quarto está disponível. Pode prosseguir com a reserva."
                         }}
                     </div>
                     @endif @foreach($rooms as $room)
