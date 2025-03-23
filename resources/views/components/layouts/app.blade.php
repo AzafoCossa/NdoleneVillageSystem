@@ -7,11 +7,13 @@
             name="keywords"
             content="NdoleneVillage, Ndolene Village, Resort Chidenguele, Hotel Chidenguele, Passar a noite, Estância turística, Turismo em Moçambique, Reservas de quartos, Pedidos de refeições, Hospedagem, Viagem, Lazer, Natureza, Descanso, Conforto, Experiências únicas"
         />
-
-        {{
-            $metaseo ??
-                "Descubra a Ndolene Village, a estância turística ideal para quem procura conforto, natureza e experiências inesquecíveis. Reserve quartos e refeições de forma simples e prática!"
-        }}
+        <meta
+            name="description"
+            content="{{
+                $metaseo ??
+                    'Descubra a Ndolene Village, a estância turística ideal para quem procura conforto, natureza e experiências inesquecíveis. Reserve quartos e refeições de forma simples e prática!'
+            }}"
+        />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>{{ $title ?? "Ndolene Village | Home" }}</title>
         <script src="https://www.paypal.com/sdk/js?components=card-fields&client-id={{
