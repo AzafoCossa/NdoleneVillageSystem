@@ -1,10 +1,4 @@
 <x-layouts.app>
-  <x-slot:metaseo>
-    <meta
-    name="description"
-    content="Descubra a Ndolene Village, a estância turística ideal para quem procura conforto, natureza e experiências inesquecíveis. Reserve quartos e refeições de forma simples e prática!"
-/>
-  </x-slot>
     <header class="relative bg-headerbackground bg-cover bg-center bg-no-repeat ">
       <nav class="bg-primary border-gray-200 sticky top-0 left-0 right-0">
         <div class="container flex flex-wrap items-center justify-end gap-5 mx-auto px-4">
