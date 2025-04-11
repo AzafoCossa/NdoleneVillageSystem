@@ -25,12 +25,13 @@ class Rooms extends Component
     {
 
         $this->rooms = Cache::get('all-rooms');
+        $this->room_types = RoomType::all();
+        
         if($this->rooms){
             return view('livewire.dashboard.rooms');
         }
 
         $this->rooms = Room::with('type')->get();
-        $this->room_types = RoomType::all();
         
         Cache::add('all-rooms', $this->rooms);
 
