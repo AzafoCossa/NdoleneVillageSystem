@@ -26,7 +26,7 @@ class Rooms extends Component
 
         $this->rooms = Cache::get('all-rooms');
         $this->room_types = RoomType::all();
-        
+
         if($this->rooms){
             return view('livewire.dashboard.rooms');
         }
@@ -43,6 +43,7 @@ class Rooms extends Component
             $this->showRoomForm = true;
         }
 
+        cache()->forget('all-rooms');
         $this->showRoomForm = false;
     }
 
