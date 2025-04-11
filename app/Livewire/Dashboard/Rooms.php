@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Livewire\Forms\RoomForm;
 use App\Models\Room;
 use App\Models\RoomType;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -22,9 +23,17 @@ class Rooms extends Component
     #[Layout('components.layouts.dashboard')]
     public function render()
     {
+
+        $this->rooms = Cache::get('all-rooms');
+        if($this->rooms){
+            return view('livewire.dashboard.rooms');
+        }
+
         $this->rooms = Room::with('type')->get();
         $this->room_types = RoomType::all();
         
+        Cache::add('all-rooms', $this->rooms);
+
         return view('livewire.dashboard.rooms');
     }
 
