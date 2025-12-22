@@ -35,3 +35,17 @@
         rgba(21, 29, 38, 0.3) 100%
     );
 }
+
+.fc-toolbar-title, .fc-col-header-cell-cushion{
+    color: #00a2ea;
+}
+
+.fc-daygrid-day{
+    color: #151d26
+}
+
+.fc-event-main:hover {
+    background-color: #47a9e2;
+    cursor: pointer;
+}
+

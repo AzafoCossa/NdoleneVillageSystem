@@ -1,8 +1,12 @@
 import "./bootstrap";
 import flatpickr from "flatpickr";
 import "flowbite";
+import { Calendar } from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import Swal from "sweetalert2";
 window.Swal = Swal;
+window.Calendar = Calendar;
+window.dayGridPlugin = dayGridPlugin;
 
 const Toast = Swal.mixin({
     toast: true,
