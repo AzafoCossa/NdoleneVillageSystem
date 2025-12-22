@@ -1,5 +1,6 @@
 <div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+        @if(Auth::user()->hasRole('client'))
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-white-50 uppercase bg-secondary">
                 <tr>
@@ -44,5 +45,39 @@
                 @endforeach
             </tbody>
         </table>
+        @endif
+        
+        @if(Auth::user()->hasRole('administrator') || Auth::user()->hasRole('manager'))
+        <div wire:ignore>
+            <div id="calendar"></div>
+        </div>
+        @endif
     </div>
 </div>
+
+@script
+<script>
+        document.addEventListener('livewire:initialized', () => {
+            let calendarReservations = JSON.parse(@this.calendarReservations);
+        
+            let calendarEl = document.getElementById('calendar');
+            let calendar = new Calendar(calendarEl, {
+            plugins: [ dayGridPlugin ],
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth'
+            },
+            events: calendarReservations,
+            showNonCurrentDates: true,
+
+            // eventClick: function(info) {
+            //     alert('Reservation: ' + info.event.title + '\nCheck-in: ' + info.event.start.toLocaleDateString() + '\nCheck-out: ' + info.event.end.toLocaleDateString());
+            // }
+            });
+            calendar.render();
+
+    })
+</script>
+@endscript
