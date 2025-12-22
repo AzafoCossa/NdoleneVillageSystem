@@ -38,14 +38,21 @@
 
 .fc-toolbar-title, .fc-col-header-cell-cushion{
     color: #00a2ea;
+    text-transform: capitalize;
 }
 
 .fc-daygrid-day{
-    color: #151d26
+    color: #151d26;
 }
 
 .fc-event-main:hover {
     background-color: #47a9e2;
     cursor: pointer;
 }
+.fc-toolbar {
+    text-transform: capitalize;
+}
 
+.fc-day.fc-day-mon.fc-day-today.fc-daygrid-day{
+    background-color: #e6ac8a;
+}

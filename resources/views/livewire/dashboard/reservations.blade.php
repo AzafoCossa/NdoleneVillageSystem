@@ -67,11 +67,15 @@
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth'
+                right: ''
             },
+            locale: 'pt-PT',
             events: calendarReservations,
             showNonCurrentDates: true,
-
+            buttonText: {
+                today: 'Hoje',
+                day: 'Dia',
+            }
             // eventClick: function(info) {
             //     alert('Reservation: ' + info.event.title + '\nCheck-in: ' + info.event.start.toLocaleDateString() + '\nCheck-out: ' + info.event.end.toLocaleDateString());
             // }
