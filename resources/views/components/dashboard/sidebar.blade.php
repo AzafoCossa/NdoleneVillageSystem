@@ -10,7 +10,7 @@
     </div>
     <div class="w-full">
         <ul class="text-lg">
-            <li class="bg-white-50 w-full py-2 pl-5 text-grey-900">
+            <li class="{{ request()->routeIs('dashboard.index') ? 'bg-white-50' : '' }} w-full py-2 pl-5 text-grey-900">
                 <a
                     class="flex items-center gap-2"
                     href="{{ route('dashboard.index') }}"
@@ -30,7 +30,7 @@
                 >
             </li>
 
-            <li class="w-full py-2 pl-5 text-grey-900">
+            <li class="w-full py-2 pl-5 text-grey-900 {{ request()->routeIs('dashboard.guests') ? 'bg-white-50' : '' }}">
                 <a
                     class="flex items-center gap-2"
                     href="{{ route('dashboard.guests') }}"
@@ -57,7 +57,7 @@
                 >
             </li>
 
-            <li class="w-full py-2 pl-5 text-grey-900">
+            <li class="w-full py-2 pl-5 text-grey-900 {{ request()->routeIs('dashboard.users') ? 'bg-white-50' : '' }}">
                 <a
                     class="flex items-center gap-2"
                     href="{{ route('dashboard.users') }}"
@@ -84,7 +84,7 @@
                 >
             </li>
 
-            <li class="w-full py-2 pl-5 text-grey-900">
+            <li class="w-full py-2 pl-5 text-grey-900 {{ request()->routeIs('dashboard.roomtypes') ? 'bg-white-50' : '' }}">
                 <a
                     class="flex items-center gap-2"
                     href="{{ route('dashboard.roomtypes') }}"
@@ -105,7 +105,7 @@
                 >
             </li>
 
-            <li class="w-full py-2 pl-5 text-grey-900">
+            <li class="w-full py-2 pl-5 text-grey-900 {{ request()->routeIs('dashboard.rooms') ? 'bg-white-50' : '' }}">
                 <a
                     class="flex items-center gap-2"
                     href="{{ route('dashboard.rooms') }}"
