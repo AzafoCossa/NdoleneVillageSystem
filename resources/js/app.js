@@ -1,4 +1,5 @@
 import "./bootstrap";
+import flatpickr from "flatpickr";
 import "flowbite";
 import Swal from "sweetalert2";
 window.Swal = Swal;
