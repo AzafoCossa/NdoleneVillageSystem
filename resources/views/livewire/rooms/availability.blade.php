@@ -34,7 +34,7 @@
     </nav>
 
     <main class="pb-20">
-        <div id="availability-form">
+        <div id="availability-form" wire:ignore>
             <div class="flex justify-center px-12 py-8 text-black">
                 <form wire:submit.prevent="checkAvailability">
                     <div class="labels hidden gap-12 pl-6 lg:flex">
@@ -67,7 +67,7 @@
                                 </div>
                                 <input
                                     wire:model="checkin"
-                                    type="text"
+                                    type="date"
                                     id="checkin"
                                     class="focus:ring-secoborder-secondary block w-full rounded-lg border-2 bg-gray-50 p-2.5 ps-10 text-lg text-gray-900 placeholder-grey-500 focus:border-secondary @error('checkin') border-red-500 @else border-secondary @enderror"
                                     placeholder="18/01/2025"
@@ -215,8 +215,13 @@
 </div>
 
 @script
-
 <script>
+    const dateConfig = {
+        dateFormat: "d/m/Y",
+        todayHighlight: true,
+        minDate: new Date(),
+    }
+
     $wire.on("availability-message", (event) => {
         Swal.fire({
             toast: true,
@@ -227,5 +232,24 @@
             text: event.message,
         });
     });
+
+
+    //CHECKIN DATE PICKER
+    const checkinDate = document.getElementById("checkin");
+    flatpickr(checkinDate, dateConfig);
+    
+    //CHECKOUT DATE PICKER
+    const checkoutDate = document.getElementById("checkout");
+    flatpickr(checkoutDate, dateConfig);
+
+    $('#checkin').on('change', function (event) {
+        const value = $(this).val();
+        @this.checkin = value;
+    })
+
+    $('#checkout').on('change', function (event) {
+        const value = $(this).val();
+        @this.checkout = value;
+    })
 </script>
 @endscript

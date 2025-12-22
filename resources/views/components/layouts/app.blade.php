@@ -16,9 +16,6 @@
         />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>{{ $title ?? "Ndolene Village | Home" }}</title>
-        <script src="https://www.paypal.com/sdk/js?components=card-fields&client-id={{
-                env('PAYPAL_CLIENT_ID')
-            }}"></script>
         @if(! app()->isLocal())
         <!-- Google Tag Manager -->
         <script>

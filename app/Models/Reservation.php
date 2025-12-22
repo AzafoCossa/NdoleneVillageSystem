@@ -16,4 +16,8 @@ class Reservation extends Model
     public function guest(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function files(){
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

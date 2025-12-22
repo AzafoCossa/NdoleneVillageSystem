@@ -36,42 +36,60 @@
         <div class="header">
             <span class="text-lg text-slate-400">Estás no último passo!</span>
             <h1 class="text-4xl font-bold text-cyan-900">
-                Digite os dados para finalizar.
+                Falta apenas a transferência.
             </h1>
+
+            <h2 class="text-2xl font-bold text-primary mt-6">Detalhes bancários</h2>
         </div>
         <div
             class="flex flex-col-reverse md:grid md:grid-flow-col grid-cols-2 gap-5 mt-10"
         >
-            <div class="form">
-                <div class="pay-method grid grid-flow-col grid-cols-3 gap-5">
-                    <div
-                        class="flex justify-center align-center border border-green-600 rounded-lg px-2 py-1 bg-white"
-                    >
-                        <img
-                            class="rounded-lg"
-                            src="{{ asset('assets/img/visa.png') }}"
-                            alt="Visa"
-                        />
+            <form class="form" wire:submit.prevent="bookRoom">
+                <div class="flex">
+                    <div class="mr-10">
+                        <p class="text-md text-slate-400 font-semibold">Número da conta:</p>
+                        <p class="text-lg font-bold text-grey-500">1234567878</p>
+                    </div>
+                    <div class="mr-10">
+                        <p class="text-md text-slate-400 font-semibold">Titular:</p>
+                        <p class="text-lg font-bold text-grey-500">Ndolene Village</p>
                     </div>
                 </div>
-
-                <div id="card-form" class="card_container mt-4">
-                    <div id="card-name-field-container"></div>
-                    <div id="card-number-field-container"></div>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div id="card-expiry-field-container"></div>
-                        <div id="card-cvv-field-container"></div>
-                    </div>
-
-                    <button
-                        class="bg-primary mt-4 rounded-lg text-white py-4 px-10 hover:bg-orange-400 hover:cursor-pointer text-xl"
-                        id="card-field-submit-button"
-                        type="button"
-                    >
-                        Reservar
-                    </button>
+            <div class="mt-4">
+                <div class="mr-10">
+                    <p class="text-md text-slate-400 font-semibold">IBAN:</p>
+                    <p class="text-lg font-bold text-grey-500">1236256356356355</p>
+                </div>
+                <div class="mr-10 mt-4">
+                    <p class="text-md text-slate-400 font-semibold">NIB:</p>
+                    <p class="text-lg font-bold text-grey-500">00005342635635</p>
+                </div>
+                <div class="mr-10 mt-4">
+                    <p class="text-md text-slate-400 font-semibold">SWIFT Code:</p>
+                    <p class="text-lg font-bold text-grey-500">BCIMMZMA</p>
                 </div>
             </div>
+            <div>
+                <p class="text-md text-slate-400 font-semibold mt-6">Upload do comprovativo de transferência: pelo menos 50% do valor total</p>
+                <button type="button" id="fileSelector" class="bg-grey-200 mt-4 rounded-lg text-black py-4 px-10 hover:bg-blue-400 hover:cursor-pointer text-xl">Selecionar o comprovativo</button>
+                <input
+                    id="transferFile"
+                    type="file"
+                    placeholder="Confirmação de Transferência"
+                    wire:model="transferFile"
+                    value="{{ old('transferFile') }}"
+                    class="hidden"
+                    accept=".png,.jpeg,.jpg,.pdf"
+                />
+                 @error('transferFile') <span class="error">{{ $message }}</span> @enderror
+            </div>
+                <button
+                    class="bg-primary mt-4 rounded-lg text-white py-4 px-10 hover:bg-orange-400 hover:cursor-pointer text-xl"
+                    type="submit"
+                >
+                    Reservar
+                </button>
+            </form>
             <div
                 class="card_image bg-gradient-to-br bg-white-200 justify-center align-center rounded-lg"
             >
@@ -117,125 +135,13 @@
 </div>
 @script
 <script>
-    const cardField = window.paypal.CardFields({
-        createOrder: createOrderCallback,
-        onApprove: onApproveCallback,
+
+    const fileSelector = document.getElementById('fileSelector');
+    const transferFile = document.getElementById('transferFile');
+
+    fileSelector.addEventListener('click', function(event) {
+        event.preventDefault();
+        transferFile.click();
     });
-
-    if (cardField.isEligible()) {
-        const nameField = cardField.NameField();
-        nameField.render("#card-name-field-container");
-
-        const numberField = cardField.NumberField();
-        numberField.render("#card-number-field-container");
-
-        const cvvField = cardField.CVVField();
-        cvvField.render("#card-cvv-field-container");
-
-        const expiryField = cardField.ExpiryField();
-        expiryField.render("#card-expiry-field-container");
-
-        document
-            .getElementById("card-field-submit-button")
-            .addEventListener("click", () => {
-                cardField.submit();
-            });
-    } else {
-        document.querySelector("#card-form").style = "display: none";
-    }
-
-    async function onApproveCallback(data, actions) {
-        try {
-            const url =
-                `{{ route('checkout.show', ['order' => '__ORDER_ID__']) }}`.replace(
-                    "__ORDER_ID__",
-                    data.orderID
-                );
-
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                },
-            });
-
-            const rawData = await response.json();
-            const orderData = rawData.jsonResponse;
-
-            const transaction =
-                orderData?.purchase_units?.[0]?.payments?.captures?.[0] ||
-                orderData?.purchase_units?.[0]?.payments?.authorizations?.[0];
-
-            const errorDetail = orderData?.details?.[0];
-
-            if (
-                errorDetail ||
-                !transaction ||
-                transaction.status === "DECLINED"
-            ) {
-                Toast.fire({
-                    icon: "error",
-                    text: "O pagamento foi recusado",
-                });
-            } else {
-                const updateReservation = await fetch(
-                    "{{ route('checkout.edit') }}",
-                    {
-                        method: "get",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                        },
-                    }
-                );
-
-                window.location.href = "{{ route('bookings.success')}}";
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-    async function createOrderCallback() {
-        try {
-            Toast.fire({
-                icon: "info",
-                text: "A processar o pagamento...",
-            });
-
-            document.getElementById("card-field-submit-button").disabled = true;
-
-            const response = await fetch("{{ route('checkout.store') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                },
-                body: JSON.stringify({
-                    room_id: "{{ $room->id }}",
-                    checkin: "{{$checkin}}",
-                    checkout: "{{$checkout}}",
-                    totalPrice: "{{$totalPrice}}",
-                }),
-            });
-
-            const data = await response.json();
-            const orderData = data.jsonResponse;
-
-            if (orderData.id) {
-                return orderData.id;
-            } else {
-                const errorDetail = orderData?.details?.[0];
-
-                const errorMessage = errorDetail
-                    ? `${errorDetail.issue} ${errorDetail.description} (${errorDetail.debug_id})}`
-                    : JSON.stringify(orderData);
-
-                throw new Error(`Server error: ${errorMessage}`);
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
 </script>
 @endscript
