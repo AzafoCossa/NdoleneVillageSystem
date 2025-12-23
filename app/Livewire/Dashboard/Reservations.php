@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -26,6 +27,7 @@ class Reservations extends Component
 
             $this->calendarReservations = Reservation::with('room')->get()->map(function($reservation){
                 return [
+                    'id' => $reservation->id,
                     'title' => $reservation->room->name,
                     'start' => $reservation->check_in,
                     'end' => $reservation->check_out,
@@ -34,5 +36,11 @@ class Reservations extends Component
         }
         
         return view('livewire.dashboard.reservations');
+    }
+
+    #[On('showReservationDetails')]
+    public function showReservation($reservationId)
+    {
+        return redirect()->route('dashboard.reservation', ['reservation' => $reservationId]);
     }
 }

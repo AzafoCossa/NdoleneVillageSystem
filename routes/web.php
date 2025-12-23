@@ -6,6 +6,7 @@ use App\Livewire\Bookings\Thankyou;
 use App\Livewire\Checkout;
 use App\Livewire\Dashboard\Reservations as DashboardReservations;
 use App\Livewire\Dashboard\Guests\Index as DashboardGuest;
+use App\Livewire\Dashboard\Reservations\ViewReservation;
 use App\Livewire\Dashboard\Users as DashboardUsers;
 use App\Livewire\Dashboard\Rooms;
 use App\Livewire\Dashboard\RoomTypes;
@@ -57,6 +58,8 @@ Route::prefix('/rooms')->name('rooms.')->group(function(){
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', DashboardReservations::class)->name('index')->middleware('role:administrator,manager,client,receptionist');
+    Route::get('/reservations', DashboardReservations::class)->name('reservations')->middleware('role:administrator,manager,client,receptionist');
+    Route::get('/reservations/{reservation}', ViewReservation::class)->name('reservation');
     Route::middleware('role:administrator,manager')->group(function(){
         Route::get('/guests', DashboardGuest::class)->name('guests');
         Route::get('/room-types', RoomTypes::class)->name('roomtypes');

@@ -75,10 +75,10 @@
             buttonText: {
                 today: 'Hoje',
                 day: 'Dia',
+            },
+            eventClick: function(info) {
+                $wire.dispatch('showReservationDetails', info.event.id);
             }
-            // eventClick: function(info) {
-            //     alert('Reservation: ' + info.event.title + '\nCheck-in: ' + info.event.start.toLocaleDateString() + '\nCheck-out: ' + info.event.end.toLocaleDateString());
-            // }
             });
             calendar.render();
 
