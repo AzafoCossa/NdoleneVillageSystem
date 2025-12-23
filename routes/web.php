@@ -54,9 +54,10 @@ Route::prefix('/rooms')->name('rooms.')->group(function(){
     Route::get('/', RoomsIndex::class)->name('index');
     Route::get('/availability', RoomsAvailability::class)->name('availability');
 });
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::get('/', DashboardReservations::class)->name('index');
-    Route::middleware(['admin'])->group(function(){
+
+Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::get('/', DashboardReservations::class)->name('index')->middleware('role:administrator,manager,client,receptionist');
+    Route::middleware('role:administrator,manager')->group(function(){
         Route::get('/guests', DashboardGuest::class)->name('guests');
         Route::get('/room-types', RoomTypes::class)->name('roomtypes');
         Route::group(['prefix' => 'rooms'], function(){
@@ -64,4 +65,4 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         });
         Route::get('/users', DashboardUsers::class)->name('users');
     });
-})->middleware(['auth']);
+});
