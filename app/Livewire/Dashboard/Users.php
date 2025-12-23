@@ -11,6 +11,7 @@ class Users extends Component
 {
     public $users = [];
     public $selectedUser = null;
+    public $showUserForm = false;
 
     #[Layout('components.layouts.dashboard'),
     Title('Manage Users - Ndolene Village')]
