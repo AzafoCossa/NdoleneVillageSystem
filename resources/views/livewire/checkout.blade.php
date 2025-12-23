@@ -83,6 +83,11 @@
                 />
                  @error('transferFile') <span class="error">{{ $message }}</span> @enderror
             </div>
+            @if ($transferFile)
+            <div>
+                <p class="text-black">{{ $transferFile->getClientOriginalName() }}</p>
+            </div>
+            @endif
                 <button
                     class="bg-primary mt-4 rounded-lg text-white py-4 px-10 hover:bg-orange-400 hover:cursor-pointer text-xl"
                     type="submit"
