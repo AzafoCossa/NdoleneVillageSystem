@@ -47,7 +47,7 @@
         </table>
         @endif
         
-        @if(Auth::user()->hasRole('administrator') || Auth::user()->hasRole('manager'))
+        @if(Auth::user()->hasRole('administrator') || Auth::user()->hasRole('manager') || Auth::user()->hasRole('receptionist'))
         <div wire:ignore>
             <div id="calendar"></div>
         </div>
@@ -58,7 +58,7 @@
 @script
 <script>
         document.addEventListener('livewire:initialized', () => {
-            let calendarReservations = JSON.parse(@this.calendarReservations);
+            let calendarReservations =  @this.calendarReservations ? JSON.parse(@this.calendarReservations) : [];
         
             let calendarEl = document.getElementById('calendar');
             let calendar = new Calendar(calendarEl, {
