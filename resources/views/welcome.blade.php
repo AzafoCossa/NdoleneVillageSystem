@@ -56,6 +56,19 @@
             </li>
           </ul>
           @endguest
+          @auth
+          <ul class="flex font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 flex-row md:mt-0">
+            <li>
+              <a href="{{ route('dashboard.index') }}" class="block py-2 px-3 md:p-0 text-white-50 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700">Dashboard</a>
+            </li>
+            <li>
+              <form method="POST" action="{{ route('auth.logout') }}">
+                @csrf
+                <a href="{{ route('auth.logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="block py-2 px-3 md:p-0 text-white-50 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700">Logout</a>
+              </form>
+            </li>
+          </ul>
+          @endauth
         </div>
         </div>
       </nav>
