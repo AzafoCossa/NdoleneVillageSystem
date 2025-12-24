@@ -2,7 +2,10 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Livewire\Forms\ReservationForm;
+use App\Livewire\Forms\UserForm;
 use App\Models\Reservation;
+use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
@@ -11,13 +14,20 @@ use Livewire\Component;
 
 class Reservations extends Component
 {
+
+   public ReservationForm $reservationForm;
+   public UserForm $userForm;
+
     public $reservations = [];
     public $calendarReservations = [];
+    public $showReservationForm = false;
+    public $rooms = [];
 
     #[Layout('components.layouts.dashboard'),
     Title('Reservations - Dashboard')]
     public function render()
     {
+        $this->rooms = Room::all();
         $user = Auth::user();
 
         if($user->role === "client"){
@@ -38,9 +48,21 @@ class Reservations extends Component
         return view('livewire.dashboard.reservations');
     }
 
+    public function addReservation(){
+        $user = $this->userForm->saveUser();
+
+        $this->reservationForm->save($user);
+        $this->showReservationForm = false;
+    }
+
     #[On('showReservationDetails')]
     public function showReservation($reservationId)
     {
         return redirect()->route('dashboard.reservation', ['reservation' => $reservationId]);
+    }
+
+    #[On('showReservationForm')]
+    public function displayReservationForm(){
+        $this->showReservationForm = true;
     }
 }
